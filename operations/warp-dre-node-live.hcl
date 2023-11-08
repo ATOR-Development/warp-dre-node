@@ -263,7 +263,7 @@ jemalloc-bg-thread yes
             PG_USER_WARP_PASSWORD="{{.Data.data.PSQL_WARP_PASSWORD}}"
             PG_USER_DRE_PASSWORD="{{.Data.data.PSQL_DRE_PASSWORD}}"
         {{end}}
-        EVALUATION_WHITELIST_SOURCES="['12l44J1L6R88VQovPPN82ImrRsQxAoUxZNUMumpQjiU','vMwzDDCzBA-8tZpqaj5Zy825ONkh7JsMjx4q51gA1V4','ihV0jOL4X7Kqq0uplIR_9kESUdFEV39GEz5AtmkLxOQ','L2k7QI2kg-aSwXg7owgzV9gqXoG0jjRsWJ9Nm4RImrE','o9il4XR7Jc0iFziCM0y9HjMqvbK2MxAUzN0_GxBQQoM','1gcIzT933BEJE5REne4OwQma-L501UzqJbfRxFzYmbY']"
+        EVALUATION_WHITELIST_SOURCES="['[[ consulKey "smart-contracts/live/relay-registry-address" ]]','[[ consulKey "smart-contracts/live/distribution-address" ]]']"
         EOH
         destination = "secrets/file.env"
         env         = true
@@ -288,9 +288,6 @@ jemalloc-bg-thread yes
 
         UPDATE_MODE="subscription"
 
-        SYNC_WINDOW_SECONDS="[21600,3600,60,2]"
-        POLL_RESPONSE_LENGTH_LIMIT=15000
-
         GW_PORT=6379
         GW_HOST="dre-redis-read.warp.cc"
         GW_USERNAME="contracts"
@@ -310,25 +307,6 @@ jemalloc-bg-thread yes
 
         BULLMQ_PORT="${NOMAD_PORT_redis-dre}"
         BULLMQ_HOST="localhost"
-        BULLMQ_USERNAME=
-        BULLMQ_PASSWORD=
-        BULLMQ_TLS=
-        BULLMQ_ENABLE_OFFLINE_QUEUE=true
-        BULLMQ_LAZY_CONNECT=true
-
-        FUNC_VIEW_STATE=false
-        PROCESS_CONTRACT_EVENTS=false
-
-        WORKERS_REGISTER=1
-        WORKERS_UPDATE=1
-
-        WORKERS_MAINTENANCE=0
-
-        WORKERS_MAINTENANCE_WINDOW=300000
-        WORKERS_POST_EVAL=1
-        WORKERS_JOB_ID_REFRESH_SECONDS=2
-        WORKERS_MAX_FAILURES=3
-        WORKERS_MAX_STATESIZE=30000000
       }
 
       resources {
