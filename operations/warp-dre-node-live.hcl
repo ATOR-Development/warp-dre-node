@@ -36,7 +36,6 @@ job "dre-node-live" {
         driver = "docker"
         config {
             image = "postgres:16-alpine"
-            network_mode = "host"
             volumes = [
               "secrets/pgRolesAndSchemasSetup.sql:/docker-entrypoint-initdb.d/pgRolesAndSchemasSetup.sql",
             ]
@@ -99,6 +98,7 @@ job "dre-node-live" {
         env {
             POSTGRES_DB="postgres"
             PGDATA="/pgdata"
+            PGHOST="localhost"
             PGPORT="${NOMAD_PORT_psqldre}"
         }
         logs {
@@ -326,7 +326,7 @@ jemalloc-bg-thread yes
         check {
           name     = "dre-node health check"
           type     = "http"
-          path     = "/health"
+          path     = "/alive"
           interval = "5s"
           timeout  = "10s"
           check_restart {
