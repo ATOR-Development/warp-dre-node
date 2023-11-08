@@ -23,7 +23,7 @@ job "warp-dre-node-stage" {
       port "psql-dre" {
         host_network = "wireguard"
       }
-      port "redis-dre" {
+      port "redisdre" {
         host_network = "wireguard"
       }
       port "dre-node" {
@@ -144,7 +144,7 @@ job "warp-dre-node-stage" {
         data = <<EOH
 # Based on https://raw.githubusercontent.com/redis/redis/7.2/redis.conf
 bind 0.0.0.0
-port {{ env "NOMAD_PORT_redis-dre" }}
+port {{ env "NOMAD_PORT_redisdre" }}
 protected-mode yes
 tcp-backlog 511
 timeout 0
@@ -235,7 +235,7 @@ jemalloc-bg-thread yes
 
       service {
         name = "redis-dre-stage"
-        port = "redis-dre"
+        port = "redisdre"
         
         check {
           name     = "Redis health check"
@@ -305,7 +305,7 @@ jemalloc-bg-thread yes
         EVALUATION_INTERNALWRITES=true
         EVALUATION_BLACKLISTED_CONTRACTS="[]"
 
-        BULLMQ_PORT="${NOMAD_PORT_redis-dre}"
+        BULLMQ_PORT="${NOMAD_PORT_redisdre}"
         BULLMQ_HOST="localhost"
       }
 
