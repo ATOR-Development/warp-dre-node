@@ -258,8 +258,7 @@ jemalloc-bg-thread yes
 
       template {
         data = <<EOH
-        {{with secret "kv/dre-node/stage
-        "}}
+        {{with secret "kv/dre-node/stage"}}
             NODE_JWK_KEY="{{.Data.data.NODE_JWK_KEY}}"
             PG_USER_WARP_PASSWORD="{{.Data.data.PSQL_WARP_PASSWORD}}"
             PG_USER_DRE_PASSWORD="{{.Data.data.PSQL_DRE_PASSWORD}}"
