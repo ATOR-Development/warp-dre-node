@@ -1,4 +1,4 @@
-job "warp-dre-node-stage" {
+job "dre-node-stage" {
   datacenters = ["ator-fin"]
   type = "service"
 
