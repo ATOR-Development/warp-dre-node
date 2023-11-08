@@ -42,6 +42,11 @@ job "dre-node-stage" {
             ]
         }
 
+        lifecycle {
+          sidecar = true
+          hook = "prestart"
+        }
+
         vault {
             policies = ["dre-node-stage"]
         }

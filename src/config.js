@@ -123,7 +123,7 @@ function getArweave() {
 }
 
 function readNodeJwk() {
-  if (process.env.NODE_JWK_KEY_BASE64) {
+  if (process.env.NODE_JWK_KEY_BASE64 !== undefined && process.env.NODE_JWK_KEY_BASE64 !== '') {
     let jwk = Buffer.from(process.env.NODE_JWK_KEY_BASE64, 'base64').toString('utf-8')
     return JSON.parse(jwk);
   } else {

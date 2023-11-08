@@ -42,6 +42,11 @@ job "dre-node-live" {
             ]
         }
 
+        lifecycle {
+          sidecar = true
+          hook = "prestart"
+        }
+
         vault {
             policies = ["dre-node-live"]
         }
