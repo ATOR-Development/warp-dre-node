@@ -20,7 +20,7 @@ job "dre-node-stage" {
 
     network {
       mode = "bridge"
-      port "psql-dre" {
+      port "psqldre" {
         host_network = "wireguard"
       }
       port "redisdre" {
@@ -99,7 +99,7 @@ job "dre-node-stage" {
         env {
             POSTGRES_DB="postgres"
             PGDATA="/pgdata"
-            PGPORT="${NOMAD_PORT_psql-dre}"
+            PGPORT="${NOMAD_PORT_psqldre}"
         }
         logs {
             max_files     = 5
@@ -116,7 +116,7 @@ job "dre-node-stage" {
         }
         service {
             name = "psql-dre-stage"
-            port = "psql-dre"
+            port = "psqldre"
             check {
                 name     = "Postgres alive"
                 type     = "tcp"
@@ -284,7 +284,7 @@ jemalloc-bg-thread yes
         PG_USER_WARP="warp"
         PG_USER_DRE="dre"
 
-        PG_PORT="${NOMAD_PORT_psql-dre}"
+        PG_PORT="${NOMAD_PORT_psqldre}"
         PG_SSL="false"
 
         FIRST_INTERACTION_TIMESTAMP=1685570400000
