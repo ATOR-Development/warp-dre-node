@@ -321,7 +321,7 @@ jemalloc-bg-thread yes
       }
 
       service {
-        name = "dre-node-live"
+        name = "dre-node-stage"
         port = "dre-node"
         
         check {
