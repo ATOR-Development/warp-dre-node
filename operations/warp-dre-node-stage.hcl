@@ -255,6 +255,7 @@ jemalloc-bg-thread yes
       driver = "docker"
       config {
         image = "ghcr.io/ator-development/warp-dre-node:[[.deploy]]"
+        force_pull = true
       }
 
       vault {
