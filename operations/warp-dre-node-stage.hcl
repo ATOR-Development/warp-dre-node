@@ -230,7 +230,7 @@ jemalloc-bg-thread yes
 
       resources {
         cpu    = 4096
-        memory = 8192
+        memory = 4096
       }
 
       service {
@@ -310,8 +310,8 @@ jemalloc-bg-thread yes
       }
 
       resources {
-        cpu    = 16384
-        memory = 16384
+        cpu    = 8192
+        memory = 8192
       }
 
       service {
