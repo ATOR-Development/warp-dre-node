@@ -126,10 +126,10 @@ function readNodeJwk() {
   if (process.env.NODE_JWK_KEY_BASE64) {
     let jwk = Buffer.from(process.env.NODE_JWK_KEY_BASE64, 'base64').toString('utf-8')
     return JSON.parse(jwk);
+  } else {
+    if (!process.env.NODE_JWK_KEY) throw new Error('NODE_JWK_KEY or NODE_JWK_KEY_BASE64 is required');
+    return JSON.parse(process.env.NODE_JWK_KEY);
   }
-
-  if (!process.env.NODE_JWK_KEY) throw new Error('NODE_JWK_KEY or NODE_JWK_KEY_BASE64 is required');
-  return JSON.parse(process.env.NODE_JWK_KEY);
 }
 function readGwUrl() {
   if (!process.env.WARP_GW_URL) throw new Error('Gateway URL is required');
