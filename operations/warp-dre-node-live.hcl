@@ -251,10 +251,12 @@ jemalloc-bg-thread yes
       }
     }
 
-    task "dre-node-live-task" {
+    task "dre-node-live-listener" {
       driver = "docker"
       config {
         image = "ghcr.io/ator-development/warp-dre-node:[[.deploy]]"
+        command = "node"
+        args = ["src/listener.js"]
       }
 
       vault {
@@ -334,6 +336,77 @@ jemalloc-bg-thread yes
             grace = "15s"
           }
         }
+      }
+    }
+
+    task "dre-node-live-syncer" {
+      driver = "docker"
+      config {
+        image = "ghcr.io/ator-development/warp-dre-node:[[.deploy]]"
+        command = "node"
+        args = ["src/syncer.js"]
+      }
+
+      vault {
+        policies = ["dre-node-live"]
+      }
+
+      template {
+        data = <<EOH
+        {{with secret "kv/dre-node/live"}}
+            NODE_JWK_KEY_BASE64="{{.Data.data.NODE_JWK_KEY_BASE64}}"
+            PG_USER_WARP_PASSWORD="{{.Data.data.PSQL_WARP_PASSWORD}}"
+            PG_USER_DRE_PASSWORD="{{.Data.data.PSQL_DRE_PASSWORD}}"
+        {{end}}
+        EVALUATION_WHITELIST_SOURCES="[\"[[ consulKey "smart-contracts/live/relay-registry-address" ]]\",\"[[ consulKey "smart-contracts/live/distribution-address" ]]\"]"
+        EOH
+        destination = "secrets/file.env"
+        env         = true
+      }
+
+      env {
+        ENV=prod
+        WARP_GW_URL="https://gw.warp.cc"
+
+        PG_HOST="localhost"
+        PG_DATABASE="postgres"
+        PG_USER_WARP="warp"
+        PG_USER_DRE="dre"
+
+        PG_PORT="${NOMAD_PORT_psqldre}"
+        PG_SSL="false"
+
+        FIRST_INTERACTION_TIMESTAMP=1685570400000
+        REDIS_PUBLISH_STATE=false
+        APPSYNC_PUBLISH_STATE=false
+        APPSYNC_KEY=""
+
+        UPDATE_MODE="subscription"
+
+        GW_PORT=6379
+        GW_HOST="dre-redis-read.warp.cc"
+        GW_USERNAME="contracts"
+        GW_PASSWORD=""
+        GW_TLS=true
+        GW_ENABLE_OFFLINE_QUEUE=true
+        GW_LAZY_CONNECT=true
+        GW_TLS_CA_CERT="-----BEGIN CERTIFICATE-----MIIDETCCAfmgAwIBAgIQHXVHBz5eF6OFL5LG9vGB1zANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDEwhyZWRpcy1jYTAeFw0yMzAyMjMxNDU1MTNaFw0yNDAyMjMxNDU1MTNaMBMxETAPBgNVBAMTCHJlZGlzLWNhMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqqOn6V/e69b+A5mp+u1b79duxX59UoKk21cjywol2tg5GfTxq16xhYne+g1jy91wRz36K1El9Qa8OPyJCGbe+Ab2iMQ4361X4CTMSMd18dLjjy+urm2xoyCM82MZO14oLr2J2yJk1DFERwW5GFVFluJto/LmwY5eA/7GK3nm5bqZQaYgqgpHGuypcjM1AMubw7m9n55Nol93jytr3eFUQcZKKFqJlP6xJJgFltsGwDwSu3sjolwuy7JHvNTgyC/nkKwQ899nF4UN3QaYtH9WMShTHzIrIFQLjxk/qq3UKgIqah/Wv/nVG9JWRGaodu/suSVM7w4RrR1KTTmWzdkpiQIDAQABo2EwXzAOBgNVHQ8BAf8EBAMCAqQwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFPFhc8RVSce6AH5fG2Wq++gw/EbuMA0GCSqGSIb3DQEBCwUAA4IBAQCcAIJiEP3SITKiMVPPvbHTSfkwSIi33LC5JwozXqDH8I9J2PCgbTGrnvlfau3VzhRuve7kobWsWtZoiLuo08P1dvEfV2mCgyknIvP0vrY6qqO9YnOObEGQASIkTb5RoAjK/ccNXUP7n6Ck21xAbOXd2JITADZtLlsDPYvmR7IWdVgDFUAlhUf8IrHMtz/XOyBHYX38rEvY7+5UMNUvRwqZ4xrDE/bwIfmBjLMZCuNkQhCrd0SseHECjWuHNIcUeuv6s0p1SpLBlbDtBVoaOQUqKURS2ynqYnLvqNwQuoNG69n4U2IbLNkoV7SzrirJbWgiegob4xr6fkr+n7z41EwO-----END CERTIFICATE-----"
+
+        EVALUATION_USEVM2=true
+        EVALUATION_MAXCALLDEPTH=5
+        EVALUATION_MAXINTERACTIONEVALUATIONTIMESECONDS=10
+        EVALUATION_ALLOWBIGINT=true
+        EVALUATION_UNSAFECLIENT=skip
+        EVALUATION_INTERNALWRITES=true
+        EVALUATION_BLACKLISTED_CONTRACTS="[]"
+
+        BULLMQ_PORT="${NOMAD_PORT_redisdre}"
+        BULLMQ_HOST="localhost"
+      }
+
+      resources {
+        cpu    = 16384
+        memory = 16384
       }
     }
   }

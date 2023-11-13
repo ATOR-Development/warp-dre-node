@@ -16,5 +16,3 @@ VOLUME /app/sqlite
 
 # Warp SDK cache
 VOLUME /app/cache
-
-CMD ["node", "src/listener.js"]
