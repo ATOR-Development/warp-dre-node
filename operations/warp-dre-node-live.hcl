@@ -314,6 +314,7 @@ jemalloc-bg-thread yes
 
         BULLMQ_PORT="${NOMAD_PORT_redisdre}"
         BULLMQ_HOST="localhost"
+        NODE_TLS_REJECT_UNAUTHORIZED='0'
       }
 
       resources {
