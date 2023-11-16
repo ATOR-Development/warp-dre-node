@@ -326,6 +326,20 @@ jemalloc-bg-thread yes
         name = "dre-node-live"
         port = "dre-node"
         
+        tags = [
+          "traefik.enable=true",
+          "traefik.http.routers.dre-node-stage.entrypoints=https",
+          "traefik.http.routers.dre-node-stage.rule=Host(`dre-node.live.ator.io`)",
+          "traefik.http.routers.dre-node-stage.tls=true",
+          "traefik.http.routers.dre-node-stage.tls.certresolver=atorresolver",
+          "traefik.http.routers.dre-node-stage.middlewares=corsheader-dre-node@consulcatalog",
+          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
+          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolallowheaders=content-type",
+          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolalloworiginlist=*",
+          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolmaxage=42",
+          "traefik.http.middlewares.corsheader-dre-node.headers.addvaryheader=true",
+        ]
+
         check {
           name     = "dre-node health check"
           type     = "http"
