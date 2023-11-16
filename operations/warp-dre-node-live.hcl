@@ -328,16 +328,16 @@ jemalloc-bg-thread yes
         
         tags = [
           "traefik.enable=true",
-          "traefik.http.routers.dre-node-stage.entrypoints=https",
-          "traefik.http.routers.dre-node-stage.rule=Host(`dre-node.live.ator.io`)",
-          "traefik.http.routers.dre-node-stage.tls=true",
-          "traefik.http.routers.dre-node-stage.tls.certresolver=atorresolver",
-          "traefik.http.routers.dre-node-stage.middlewares=corsheader-dre-node@consulcatalog",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolallowheaders=content-type",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolalloworiginlist=*",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolmaxage=42",
-          "traefik.http.middlewares.corsheader-dre-node.headers.addvaryheader=true",
+          "traefik.http.routers.dre-node-live.entrypoints=https",
+          "traefik.http.routers.dre-node-live.rule=Host(`dre-node.live.ator.io`)",
+          "traefik.http.routers.dre-node-live.tls=true",
+          "traefik.http.routers.dre-node-live.tls.certresolver=atorresolver",
+          "traefik.http.routers.dre-node-live.middlewares=corsheader-dre-node@consulcatalog",
+          "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
+          "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolallowheaders=content-type",
+          "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolalloworiginlist=*",
+          "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolmaxage=42",
+          "traefik.http.middlewares.corsheader-dre-node-live.headers.addvaryheader=true",
         ]
 
         check {

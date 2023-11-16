@@ -333,11 +333,11 @@ jemalloc-bg-thread yes
           "traefik.http.routers.dre-node-stage.tls=true",
           "traefik.http.routers.dre-node-stage.tls.certresolver=atorresolver",
           "traefik.http.routers.dre-node-stage.middlewares=corsheader-dre-node@consulcatalog",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolallowheaders=content-type",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolalloworiginlist=*",
-          "traefik.http.middlewares.corsheader-dre-node.headers.accesscontrolmaxage=42",
-          "traefik.http.middlewares.corsheader-dre-node.headers.addvaryheader=true",
+          "traefik.http.middlewares.corsheader-dre-node-stage.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
+          "traefik.http.middlewares.corsheader-dre-node-stage.headers.accesscontrolallowheaders=content-type",
+          "traefik.http.middlewares.corsheader-dre-node-stage.headers.accesscontrolalloworiginlist=*",
+          "traefik.http.middlewares.corsheader-dre-node-stage.headers.accesscontrolmaxage=42",
+          "traefik.http.middlewares.corsheader-dre-node-stage.headers.addvaryheader=true",
         ]
         
         check {
