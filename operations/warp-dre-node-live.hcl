@@ -332,7 +332,7 @@ jemalloc-bg-thread yes
           "traefik.http.routers.dre-node-live.rule=Host(`dre-node.live.ator.io`)",
           "traefik.http.routers.dre-node-live.tls=true",
           "traefik.http.routers.dre-node-live.tls.certresolver=atorresolver",
-          "traefik.http.routers.dre-node-live.middlewares=corsheader-dre-node@consulcatalog",
+          "traefik.http.routers.dre-node-live.middlewares=corsheader-dre-node-live@consulcatalog",
           "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
           "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolallowheaders=content-type",
           "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolalloworiginlist=*",
