@@ -342,7 +342,7 @@ jemalloc-bg-thread yes
         ]
         
         check {
-          name     = "dre-node health check"
+          name     = "dre-node-stage health check"
           type     = "http"
           path     = "/alive"
           interval = "5s"
@@ -382,7 +382,7 @@ jemalloc-bg-thread yes
       }
 
       env {
-        ENV=prod
+        ENV="prod"
         WARP_GW_URL="https://gw.warp.cc"
 
         PG_HOST="localhost"
@@ -413,7 +413,7 @@ jemalloc-bg-thread yes
         EVALUATION_MAXCALLDEPTH=5
         EVALUATION_MAXINTERACTIONEVALUATIONTIMESECONDS=10
         EVALUATION_ALLOWBIGINT=true
-        EVALUATION_UNSAFECLIENT=skip
+        EVALUATION_UNSAFECLIENT="skip"
         EVALUATION_INTERNALWRITES=true
         EVALUATION_BLACKLISTED_CONTRACTS="[]"
 
