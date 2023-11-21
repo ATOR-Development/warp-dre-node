@@ -373,7 +373,7 @@ jemalloc-bg-thread yes
             PG_USER_WARP_PASSWORD="{{.Data.data.PSQL_WARP_PASSWORD}}"
             PG_USER_DRE_PASSWORD="{{.Data.data.PSQL_DRE_PASSWORD}}"
         {{end}}
-        EVALUATION_WHITELIST_SOURCES="[\"[[ consulKey "smart-contracts/live/relay-registry-address" ]]\",\"[[ consulKey "smart-contracts/live/distribution-address" ]]\"]"
+        EVALUATION_WHITELIST_SOURCES="[\"[[ consulKey "smart-contracts/live/relay-registry-source" ]]\",\"[[ consulKey "smart-contracts/live/distribution-source" ]]\"]"
         EOH
         destination = "secrets/file.env"
         env         = true
