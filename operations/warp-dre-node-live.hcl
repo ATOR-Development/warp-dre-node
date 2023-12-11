@@ -329,7 +329,7 @@ jemalloc-bg-thread yes
         tags = [
           "traefik.enable=true",
           "traefik.http.routers.dre-node-live.entrypoints=https",
-          "traefik.http.routers.dre-node-live.rule=Host(`dre-node.live.ator.io`)",
+          "traefik.http.routers.dre-node-live.rule=Host(`warp-dre-node.ator.io`)",
           "traefik.http.routers.dre-node-live.tls=true",
           "traefik.http.routers.dre-node-live.tls.certresolver=atorresolver",
           "traefik.http.routers.dre-node-live.middlewares=corsheader-dre-node-live@consulcatalog",
