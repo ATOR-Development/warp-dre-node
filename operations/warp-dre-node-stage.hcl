@@ -285,7 +285,6 @@ jemalloc-bg-thread yes
         PG_DATABASE="postgres"
         PG_USER_WARP="warp"
         PG_USER_DRE="dre"
-
         PG_PORT="${NOMAD_PORT_psqldre}"
         PG_SSL="false"
 
