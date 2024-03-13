@@ -25,6 +25,7 @@ Update mode can be set up using env config
 ## Deployment
 
 ### 1.  Database
+
 ##### 1. Local env  
 1. `npm run run-docker:local`
 2. Confirm that database is running locally
