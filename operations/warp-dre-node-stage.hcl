@@ -381,6 +381,7 @@ jemalloc-bg-thread yes
       }
 
       env {
+        BUMP="1"
         ENV="prod"
         WARP_GW_URL="https://gw.warp.cc"
 
