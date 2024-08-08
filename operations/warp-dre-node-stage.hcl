@@ -147,7 +147,7 @@ job "dre-node-stage" {
 
       template {
         data = <<EOH
-# Based on https://raw.githubusercontent.com/redis/redis/7.2/redis.conf
+# Based on https://raw.githubusercontent.com/redis/redis/7.2/redis.conf  
 bind 0.0.0.0
 port {{ env "NOMAD_PORT_redisdre" }}
 protected-mode yes
