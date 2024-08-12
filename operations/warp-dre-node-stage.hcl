@@ -3,7 +3,8 @@ job "dre-node-stage" {
   type = "service"
 
   group "dre-stage-group" {
-    
+
+
     count = 1
 
     volume "psql-dre-stage" {
@@ -432,3 +433,4 @@ jemalloc-bg-thread yes
     }
   }
 }
+
