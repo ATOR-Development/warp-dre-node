@@ -340,6 +340,7 @@ jemalloc-bg-thread yes
           "traefik.http.middlewares.corsheader-dre-node-stage.headers.accesscontrolmaxage=42",
           "traefik.http.middlewares.corsheader-dre-node-stage.headers.addvaryheader=true",
 
+          "traefik-ec.enable=true",
           "traefik-ec.http.routers.dre-node-stage.entrypoints=https",
           "traefik-ec.http.routers.dre-node-stage.rule=Host(`dre-stage.ec.anyone.tech`)",
           "traefik-ec.http.routers.dre-node-stage.tls=true",
