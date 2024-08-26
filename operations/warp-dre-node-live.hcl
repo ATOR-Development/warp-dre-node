@@ -341,6 +341,17 @@ jemalloc-bg-thread yes
           "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolalloworiginlist=*",
           "traefik.http.middlewares.corsheader-dre-node-live.headers.accesscontrolmaxage=42",
           "traefik.http.middlewares.corsheader-dre-node-live.headers.addvaryheader=true",
+          
+          "traefik-ec.http.routers.dre-node-live.entrypoints=https",
+          "traefik-ec.http.routers.dre-node-live.rule=Host(`dre.ec.anyone.tech`)",
+          "traefik-ec.http.routers.dre-node-live.tls=true",
+          "traefik-ec.http.routers.dre-node-live.tls.certresolver=anyoneresolver",
+          "traefik-ec.http.routers.dre-node-live.middlewares=corsheader-dre-node-live@consulcatalog",
+          "traefik-ec.http.middlewares.corsheader-dre-node-live.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE",
+          "traefik-ec.http.middlewares.corsheader-dre-node-live.headers.accesscontrolallowheaders=content-type",
+          "traefik-ec.http.middlewares.corsheader-dre-node-live.headers.accesscontrolalloworiginlist=*",
+          "traefik-ec.http.middlewares.corsheader-dre-node-live.headers.accesscontrolmaxage=42",
+          "traefik-ec.http.middlewares.corsheader-dre-node-live.headers.addvaryheader=true",
         ]
 
         check {
