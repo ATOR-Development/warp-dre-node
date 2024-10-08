@@ -112,7 +112,7 @@ job "dre-node-live" {
         }
         resources {
             cpu = 2048
-            memory = 4096
+            memory = 8192
         }
         service {
             name = "psql-dre-live"
@@ -437,7 +437,7 @@ jemalloc-bg-thread yes
 
       resources {
         cpu    = 2048
-        memory = 2048
+        memory = 4096
       }
     }
   }
