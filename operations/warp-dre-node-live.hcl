@@ -254,7 +254,7 @@ jemalloc-bg-thread yes
     task "dre-node-live-listener" {
       driver = "docker"
       config {
-        image = "ghcr.io/anyone-protocol/warp-dre-node:[[.deploy]]"
+        image = "ghcr.io/anyone-protocol/warp-dre-node:[[.commit_sha]]"
         command = "node"
         args = ["src/listener.js"]
       }
@@ -372,7 +372,7 @@ jemalloc-bg-thread yes
     task "dre-node-live-syncer" {
       driver = "docker"
       config {
-        image = "ghcr.io/anyone-protocol/warp-dre-node:[[.deploy]]"
+        image = "ghcr.io/anyone-protocol/warp-dre-node:[[.commit_sha]]"
         command = "node"
         args = ["src/syncer.js"]
       }
